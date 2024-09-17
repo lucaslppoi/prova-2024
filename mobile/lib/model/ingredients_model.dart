@@ -1,27 +1,15 @@
-class IngredientModel {
-  String nome;
-  int recipeId;
+class Ingredient {
   int id;
+  int recipeId;
+  String nome;
 
-  IngredientModel({
-    required this.nome,
-    required this.id,
-    required this.recipeId,
-  });
+  Ingredient({required this.id, required this.recipeId, required this.nome});
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'nome': nome,
-      'id': id,
-      'recipeId': recipeId,
-    };
-  }
-
-  factory IngredientModel.fromJson(Map<String, dynamic> json) {
-    return IngredientModel(
-      nome: json['nome'] as String,
-      id: json['id'] as int,
-      recipeId: json['recipeId'] as int,
+  factory Ingredient.fromJson(Map<String, dynamic> json) {
+    return Ingredient(
+      id: json['Id'],
+      recipeId: json['RecipeId'],
+      nome: json['Nome'],
     );
   }
 }

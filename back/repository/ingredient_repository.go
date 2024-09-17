@@ -20,17 +20,10 @@ func (r IngredientRepositoryImpl) AddIngredient(recipe model.Ingredient) {
 	}
 }
 
-func (r IngredientRepositoryImpl) GetByID(id string) model.Ingredient {
-	var value model.Ingredient
-	r.Db.First(&value, id)
-	return value
-}
-
-func (r IngredientRepositoryImpl) Update(recipe model.Ingredient) {
-	result := r.Db.Save(&recipe)
-	if result.Error != nil {
-		panic(result.Error)
-	}
+func (r IngredientRepositoryImpl) GetAllByRecipeID(id string) []model.Ingredient {
+	var values []model.Ingredient
+	r.Db.Where("recipe_id = ?", id).Find(&values)
+	return values
 }
 
 func (r IngredientRepositoryImpl) RemoveIngredient(id string) {

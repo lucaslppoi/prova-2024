@@ -13,24 +13,27 @@ func NewRecipeRepositoryImpl(Db *gorm.DB) RecipeRepository {
 	return &RecipeRepositoryImpl{Db: Db}
 }
 
-func (r RecipeRepositoryImpl) Create(recipe model.Recipe) {
+func (r RecipeRepositoryImpl) Create(recipe model.Recipe) model.Recipe {
 	result := r.Db.Create(&recipe)
 	if result.Error != nil {
 		panic(result.Error)
 	}
+
+	return recipe
 }
 
-func (r RecipeRepositoryImpl) GetByID(id string) model.Recipe {
-	var value model.Recipe
-	r.Db.First(&value, id)
-	return value
+func (r RecipeRepositoryImpl) GetAll() []model.Recipe {
+	var values []model.Recipe
+	r.Db.Find(&values)
+	return values
 }
 
-func (r RecipeRepositoryImpl) Update(recipe model.Recipe) {
+func (r RecipeRepositoryImpl) Update(recipe model.Recipe) model.Recipe {
 	result := r.Db.Save(&recipe)
 	if result.Error != nil {
 		panic(result.Error)
 	}
+	return recipe
 }
 
 func (r RecipeRepositoryImpl) Delete(id string) {

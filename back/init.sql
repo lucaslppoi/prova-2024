@@ -1,12 +1,12 @@
 create table recipes (
-    id int,
+    id serial primary key,
     nome varchar(255),
     tempo_preparo int,
     custo_aproximado float
 );
 
-create table ingredientes (
-    id int,
+create table ingredients (
+    id serial primary key,
     recipe_id int,
     nome varchar(255)
 );

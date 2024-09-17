@@ -33,27 +33,9 @@ func (controller *IngredientController) AddIngredient(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, webResponse)
 }
 
-func (controller *IngredientController) UpdateRecipe(ctx *gin.Context) {
-	createIngredientRequest := dto.CreateIngredientsRequest{}
-	err := ctx.ShouldBindJSON(&createIngredientRequest)
-	if err != nil {
-		panic(err)
-	}
+func (controller *IngredientController) GetAllByRecipeID(ctx *gin.Context) {
 
-	controller.ingredientService.Update(createIngredientRequest.MapToModel())
-
-	webResponse := dto.Response{
-		Code:   200,
-		Status: "Ok",
-		Data:   nil,
-	}
-
-	ctx.JSON(http.StatusOK, webResponse)
-}
-
-func (controller *IngredientController) GetByID(ctx *gin.Context) {
-
-	value := controller.ingredientService.GetByID(ctx.Param("id"))
+	value := controller.ingredientService.GetAllByRecipeID(ctx.Param("id"))
 
 	webResponse := dto.Response{
 		Code:   200,
@@ -65,12 +47,6 @@ func (controller *IngredientController) GetByID(ctx *gin.Context) {
 }
 
 func (controller *IngredientController) Delete(ctx *gin.Context) {
-	createIngredientRequest := dto.CreateRecipeRequest{}
-	err := ctx.ShouldBindJSON(&createIngredientRequest)
-	if err != nil {
-		panic(err)
-	}
-
 	controller.ingredientService.RemoveIngredient(ctx.Param("id"))
 
 	webResponse := dto.Response{

@@ -1,31 +1,22 @@
-class RecipeModel {
-  String nome;
+class Recipe {
   int id;
+  String nome;
   int tempoPreparo;
   double custoAproximado;
 
-  RecipeModel({
-    required this.nome,
+  Recipe({
     required this.id,
+    required this.nome,
     required this.tempoPreparo,
     required this.custoAproximado,
   });
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'nome': nome,
-      'id': id,
-      'tempoPreparo': tempoPreparo,
-      'custoAproximado': custoAproximado,
-    };
-  }
-
-  factory RecipeModel.fromJson(Map<String, dynamic> json) {
-    return RecipeModel(
-      nome: json['nome'] as String,
-      id: json['id'] as int,
-      tempoPreparo: json['tempoPreparo'] as int,
-      custoAproximado: json['custoAproximado'] as double,
+  factory Recipe.fromJson(Map<String, dynamic> json) {
+    return Recipe(
+      id: json['Id'],
+      nome: json['Nome'],
+      tempoPreparo: json['TempoPreparo'],
+      custoAproximado: json['CustoAproximado'],
     );
   }
 }

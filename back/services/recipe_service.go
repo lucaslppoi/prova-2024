@@ -15,16 +15,16 @@ func NewRecipeServiceImpl(recipeRepository repository.RecipeRepository) RecipeSe
 	}
 }
 
-func (r RecipeServiceImpl) Create(recipe model.Recipe) {
-	r.recipeRepository.Create(recipe)
+func (r RecipeServiceImpl) Create(recipe model.Recipe) model.Recipe {
+	return r.recipeRepository.Create(recipe)
 }
 
-func (r RecipeServiceImpl) GetByID(id string) model.Recipe {
-	return r.recipeRepository.GetByID(id)
+func (r RecipeServiceImpl) GetAll() []model.Recipe {
+	return r.recipeRepository.GetAll()
 }
 
-func (r RecipeServiceImpl) Update(recipe model.Recipe) {
-	r.recipeRepository.Update(recipe)
+func (r RecipeServiceImpl) Update(recipe model.Recipe) model.Recipe {
+	return r.recipeRepository.Update(recipe)
 }
 
 func (r RecipeServiceImpl) Delete(id string) {

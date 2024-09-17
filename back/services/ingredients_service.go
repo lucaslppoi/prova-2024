@@ -19,12 +19,8 @@ func (r IngredientServiceImpl) AddIngredient(ingredient model.Ingredient) {
 	r.ingredientRepository.AddIngredient(ingredient)
 }
 
-func (r IngredientServiceImpl) GetByID(id string) model.Ingredient {
-	return r.ingredientRepository.GetByID(id)
-}
-
-func (r IngredientServiceImpl) Update(ingredient model.Ingredient) {
-	r.ingredientRepository.Update(ingredient)
+func (r IngredientServiceImpl) GetAllByRecipeID(id string) []model.Ingredient {
+	return r.ingredientRepository.GetAllByRecipeID(id)
 }
 
 func (r IngredientServiceImpl) RemoveIngredient(id string) {
